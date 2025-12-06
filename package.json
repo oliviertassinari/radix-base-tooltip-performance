@@ -5,7 +5,7 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
-    "@base-ui-components/react": "1.0.0-rc.0",
+    "@base-ui-components/react": "https://pkg.pr.new/mui/base-ui/@base-ui-components/react@3445",
     "@base-ui-components/utils": "0.2.2",
     "@emotion/styled": "^11.14.1",
     "@mui/material": "^7.3.6",
