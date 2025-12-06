@@ -4,6 +4,7 @@ import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 import { useState } from "react";
 import afterFrame from "afterframe";
 import { Tooltip as BaseTooltip } from "@base-ui-components/react";
+import MuiTooltip from "@mui/material/Tooltip";
 
 function measureInteraction() {
   const startTimestamp = performance.now();
@@ -149,6 +150,26 @@ const BaseLazyList = () => {
   );
 };
 
+const MuiItemWithTooltip = ({ idx }) => {
+  return (
+    <MuiTooltip title="This is title">
+      <button>
+        <Item idx={idx} />
+      </button>
+    </MuiTooltip>
+  );
+};
+
+const MuiSlowList = () => {
+  return (
+    <div className="slow-list">
+      {Array.from({ length: 2000 }).map((_, idx) => (
+        <MuiItemWithTooltip key={idx} idx={idx} />
+      ))}
+    </div>
+  );
+};
+
 const RenderMeasure = ({ rerender }) => {
   const [lastInteraction, setLastInteraction] = useState(0);
 
@@ -188,6 +209,8 @@ const Demo = ({ mode }) => {
         <BaseSlowList />
       ) : mode === "base-lazy" ? (
         <BaseLazyList />
+      ) : mode === "material-ui" ? (
+        <MuiSlowList />
       ) : (
         <List />
       )}
@@ -244,6 +267,7 @@ export default function App() {
           <option value="radix">Radix</option>
           <option value="base">Base UI</option>
           <option value="base-lazy">Base UI - lazy activation</option>
+          <option value="material-ui">Material UI</option>
           <option value="list">No tooltips</option>
         </select>
       </div>
